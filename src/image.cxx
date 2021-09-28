@@ -6,12 +6,13 @@
 
 #include "png.h"
 
-bool image::readpng(const std::string& filepath) {
+bool image::readpng(const std::string &filepath) {
    FILE *file = fopen(filepath.c_str(), "rb");
    if (!file) {
       return false;
    }
-   png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+   png_structp png_ptr =
+       png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
    if (!png_ptr) {
       fclose(file);
       return false;
@@ -52,9 +53,9 @@ bool image::readpng(const std::string& filepath) {
       return false;
    }
 
-   row_pointers = (png_bytep*)malloc(sizeof(png_bytep) * height);
+   row_pointers = (png_bytep *)malloc(sizeof(png_bytep) * height);
    for (size_t h = 0; h < height; h++) {
-      row_pointers[h] = (png_byte*)malloc(png_get_rowbytes(png_ptr, info_ptr));
+      row_pointers[h] = (png_byte *)malloc(png_get_rowbytes(png_ptr, info_ptr));
    }
    png_read_image(png_ptr, row_pointers);
 
@@ -65,14 +66,9 @@ bool image::readpng(const std::string& filepath) {
    return true;
 }
 
-
-image::image(const std::string& filepath) {
-   bool ok = readpng(filepath);
-   if (!ok) {
-      throw
-         std::runtime_error("Error reading png file.");
+image::image(const std::string &filepath) {
+   if (!readpng(filepath)) {
+      throw std::runtime_error("Error reading png file.");
    }
 }
 
-//image::to_memref() {
-//}
