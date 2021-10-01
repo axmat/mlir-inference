@@ -6,10 +6,9 @@
 #include <vector>
 
 #include "inc/image.hxx"
-#include "inc/memref.hxx"
 
-// tensor
-// When the strides are not provided, it assumes that the input is in NCHW, CHW,
+// tensor/memref data structure
+// When the strides are not provided, it assumes that the data is in NCHW, CHW,
 // HW or W format
 template <std::size_t N> class tensor {
  public:
@@ -27,12 +26,10 @@ template <std::size_t N> class tensor {
    tensor(const std::vector<image> &imgs, intptr_t sizes[N]);
    // Desctrutor
    ~tensor();
-   // Create a memref descriptor
-   memref view() {
-      return memref(allocated, aligned, offset, sizes, strides, false);
-   };
+   //tensor(float *allocated, float* aligned, intptr_t offset, intptr_t sizes[N],
+   //       intptr_t strides[N]);
 
- private:
+private:
    // Set the strides from the shape
    void setStrides();
    // Set the shape

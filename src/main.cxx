@@ -4,15 +4,14 @@
 
 #include "inc/tensor.hxx"
 
-// MLIR function
-// extern "C" memref* __mlir_ciface_main_graph(memref* input);
+// MLIR functions
+// _mlir_ciface_modelname
+extern "C" void _mlir_ciface_eg(tensor<3>* input, tensor<2>* output);
 
 // Run inference on mlir
 template<std::size_t N, std::size_t M>
 void runInference(tensor<N>& input, tensor<M>& output) {
-   memref memrefIn = input.view();
-   memref memrefOut = output.view();
-   //memrefOut = __mlir_ciface_main_graph(memrefIn);
+   _mlir_ciface_eg(&input, &output);
 }
 
 int main(int argc, char **argv) {
