@@ -17,13 +17,11 @@ MLIR_FILES := $(filter-out %.opt.mlir, $(wildcard $(MODELS_DIR)/*.mlir))
 MLIR_OBJS := $(patsubst %.mlir, %.o, $(MLIR_FILES))
 MODELS_OBJS := $(patsubst $(MODELS_DIR)/%.o, $(OBJ_DIR)/%.o, $(MLIR_OBJS))
 
-.PHONY: all
-
-all: models main
+.PHONY: clean models main
 
 models: BASH:=/bin/bash
 models:
-	$(BASH) compile-models.sh $(MLIR_BIN_DIR) $(MODELS_DIR) $(OBJ_DIR)
+	$(BASH) scripts/compile-models.sh $(MLIR_BIN_DIR) $(MODELS_DIR) $(OBJ_DIR)
 
 main: $(OBJS)
 	${CXX} $(CXX_FLAGS) -o $(BIN_DIR)/main $^ $(LIBPNG) $(MODELS_OBJS)
