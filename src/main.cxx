@@ -6,12 +6,12 @@
 
 // MLIR functions
 // _mlir_ciface_modelname
-extern "C" void _mlir_ciface_eg(tensor<3>* input, tensor<2>* output);
+extern "C" void _mlir_ciface_test(tensor<3>* input, tensor<2>* output);
 
 // Run inference on mlir
 template<std::size_t N, std::size_t M>
 void runInference(tensor<N>& input, tensor<M>& output) {
-   _mlir_ciface_eg(&input, &output);
+   _mlir_ciface_test(&input, &output);
 }
 
 int main(int argc, char **argv) {
