@@ -7,6 +7,8 @@
 
 class image {
  private:
+   // Color type of the image
+   png_byte color_type;
    // Shape of the image
    size_t channels;
    size_t height;
