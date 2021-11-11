@@ -29,7 +29,7 @@ void mobilenet() {
    image img(filepath);
    // Create tensor
    intptr_t sizes_in[3] = {3, 224, 224};
-   tensor<3> input(img, sizes_in);
+   tensor<float,3> input(img, sizes_in);
    // Normalize
    input.normalize({0.485, 0.456, 0.406}, {0.229, 0.224, 0.225});
    // Run inference using onnx-mlir runtime

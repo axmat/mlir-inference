@@ -25,5 +25,5 @@ class image {
    // Destructor
    ~image(){};
 
-   template <std::size_t> friend class tensor;
+   template <typename T, std::size_t> friend class tensor;
 };
