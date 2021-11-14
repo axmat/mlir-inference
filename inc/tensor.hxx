@@ -238,7 +238,7 @@ tensor<T, N> tensor<T, N>::transpose(const std::vector<size_t>& dims) {
    }
    auto axes = dims;
    std::sort(axes.begin(), axes.end(), [](size_t i, size_t j){ return i < j;});
-   if (axes[0] != 0 || axes[N-1] == N) {
+   if (axes[0] != 0 || axes[N-1] != N - 1) {
       throw
          std::runtime_error("All dimensions must be in range 0..N-1");
    }
