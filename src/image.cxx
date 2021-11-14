@@ -46,7 +46,7 @@ bool image::readpng(const std::string &filepath) {
    channels = png_get_channels(png_ptr, info_ptr);
 
    // [TODO] Support other color types (RGBA, GRAY, ...)
-   png_byte color_type = png_get_color_type(png_ptr, info_ptr);
+   color_type = png_get_color_type(png_ptr, info_ptr);
    if (color_type != PNG_COLOR_TYPE_RGB) {
       png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
       fclose(file);
