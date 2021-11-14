@@ -244,7 +244,6 @@ tensor<T, N> tensor<T, N>::transpose(const std::vector<size_t>& dims) {
    }
 
    intptr_t newSizes[N];
-   using namespace std;
    for (size_t i = 0; i < N; i++) {
       newSizes[i] = sizes[dims[i]];
    }
